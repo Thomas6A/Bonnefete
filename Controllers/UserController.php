@@ -26,4 +26,19 @@ class UserController
         echo $message;
         echo '<a href="../user/login">Se connecter</a>';
     }
+
+    public function getLogin(){
+        require_once 'Views/user/login.php';
+    }
+
+    public function postLogin(){
+        $user = $_POST;
+        $this->userModel->login($user);
+        header('Location: ../user/register');
+    }
+
+    public function getLogout(){
+        session_destroy();
+        header('Location: ../user/register');
+    }
 }

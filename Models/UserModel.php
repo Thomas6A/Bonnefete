@@ -28,4 +28,26 @@ class UserModel
         }
 
     }
+
+    public function login(array $user)
+    {
+        $mail = $user['mail_user'];
+        $password = $user['password_user'];
+
+        $query = $this->connection->getPdo()->prepare('SELECT password_user FROM user WHERE mail_user = :mail_user');
+        $query->execute([
+            "mail_user"=>$mail
+        ]);
+        $bdd_pass = $query->fetch(\PDO::FETCH_ASSOC);
+        if(password_verify($password, $bdd_pass['password_user'])){
+            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user FROM user WHERE mail_user = :mail_user');
+            $query->execute([
+                "mail_user"=>$mail
+            ]);
+            $userCo = $query->fetch(\PDO::FETCH_ASSOC);
+            $_SESSION['id_username'] = $userCo['id_user'];
+            $_SESSION['username'] = $mail;
+            $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
+        }
+    }
 }
