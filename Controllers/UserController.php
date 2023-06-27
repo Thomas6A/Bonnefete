@@ -41,4 +41,26 @@ class UserController
         session_destroy();
         header('Location: ../user/register');
     }
+
+    public function getUpdate($id_user){
+        $user = $this->userModel->getById($id_user);
+        require_once 'Views/user/profile.php';
+    }
+
+    public function postUpdate($id_user){
+        $user = $_POST;
+        $this->userModel->update($id_user,$user);
+        header('Location:../../user/register');
+    }
+
+    public function getUpdatePassword($id_user){
+        $user = $this->userModel->getById($id_user);
+        require_once 'Views/user/mdp.php';
+    }
+
+    public function postUpdatePassword($id_user){
+        $password = $_POST;
+        $this->userModel->updatePassword($id_user,$password);
+        header('Location:../../user/update/'.$id_user);
+    }
 }
