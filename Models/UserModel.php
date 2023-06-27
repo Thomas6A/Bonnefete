@@ -2,7 +2,10 @@
 
 namespace App\Models;
 require_once 'Database.php';
+require_once 'Models/User.php';
 use App\Database;
+
+use PDO;
 
 class UserModel
 {
@@ -45,9 +48,39 @@ class UserModel
                 "mail_user"=>$mail
             ]);
             $userCo = $query->fetch(\PDO::FETCH_ASSOC);
-            $_SESSION['id_username'] = $userCo['id_user'];
+            $_SESSION['id_user'] = $userCo['id_user'];
             $_SESSION['username'] = $mail;
             $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
+            
         }
+    }
+
+    public function update($id_user, $user){
+        $query = $this->connection->getPdo()->prepare('update user set pseudo_user = :pseudo_user, mail_user = :mail_user where id_user = :id_user');
+        $query->execute([
+            'id_user' => $id_user,
+            'pseudo_user' => $user['pseudo_user'],
+            'mail_user' => $user['mail_user']
+        ]);
+        $_SESSION['username'] = $user['mail_user'];
+        $_SESSION['pseudo_user'] = $user['pseudo_user'];
+    }
+
+    public function getById($id_user){
+        $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,mail_user,password_user FROM user where id_user = :id_user');
+        $query->execute([
+            'id_user' => $id_user
+        ]);
+        $query->setFetchMode(PDO::FETCH_CLASS, "App\Models\User");
+        return $query->fetch();
+    }
+
+    public function updatePassword($id_user, $user){
+        $password = password_hash($user['password_user'], PASSWORD_DEFAULT);
+        $query = $this->connection->getPdo()->prepare('update user set password_user = :password_user where id_user = :id_user');
+        $query->execute([
+            'id_user' => $id_user,
+            'password_user' => $password
+        ]);
     }
 }

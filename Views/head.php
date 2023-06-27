@@ -13,4 +13,5 @@
 <a href="../user/login">Se Connecter</a>
 <?php else: ?>
 <a href="../user/logout">Se Deconnecter</a>
+<a href="./update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
 <?php endif; ?>
