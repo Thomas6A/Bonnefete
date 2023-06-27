@@ -83,4 +83,11 @@ class UserModel
             'password_user' => $password
         ]);
     }
+
+    public function delete($id_user){
+        $query = $this->connection->getPdo()->prepare('DELETE FROM user WHERE id_user = :id_user');
+        $query ->execute([
+            'id_user' => $id_user
+        ]);
+    }
 }

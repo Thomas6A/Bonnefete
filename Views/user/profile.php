@@ -10,5 +10,6 @@
     <button class="btn btn-primary"><?="Mettre à jour"?></button>
 </form>
 <a href="../updatePassword/<?= $id_user ?>">Modifier Mot de passe</a>
+<a href="../delete/<?= $id_user ?>">Supprimer Profile</a>
 
 <?php require_once 'Views/foot.php'; ?>
