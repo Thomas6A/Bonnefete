@@ -63,4 +63,10 @@ class UserController
         $this->userModel->updatePassword($id_user,$password);
         header('Location:../../user/update/'.$id_user);
     }
+
+    public function getDelete($id_user){
+        $this->userModel->delete($id_user);
+        $this->getLogout();
+        header('Location:../../user/register');
+    }
 }
