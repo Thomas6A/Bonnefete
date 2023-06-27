@@ -2,7 +2,6 @@
 
 namespace App;
 
-require_once 'Controllers/BookController.php';
 require_once 'Controllers/UserController.php';
 class Router {
     protected $requestUri;
@@ -29,6 +28,8 @@ class Router {
         if (!class_exists($controllerName) || !method_exists($controllerName, $actionName)) {
             header("HTTP/1.0 404 Not Found");
             echo "Page not found";
+            echo $controllerName;
+            echo $actionName;
             exit;
         }
 
