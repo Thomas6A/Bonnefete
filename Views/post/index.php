@@ -16,6 +16,7 @@
         <th>Content</th>
         <th>Date</th>
         <th>User</th>
+        <th>Action</th>
     </tr>
     <?php foreach ($posts as $post) : ?>
         <tr>
@@ -23,6 +24,11 @@
             <td><?= $post->getContent() ?></td>
             <td><?= $post->getDate() ?></td>
             <td><?= $post->pseudo_user ?></td>
+            <td><a href="./detail/<?= $post->getId() ?>">Voir détail</a>
+            <?php if($_SESSION['pseudo_user'] == $post->pseudo_user) : ?>
+                <a href="./update/<?= $post->getId() ?>">Modifier le post</a>
+            <?php endif; ?>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
