@@ -3,6 +3,7 @@
 namespace App;
 
 require_once 'Controllers/UserController.php';
+require_once 'Controllers/PostController.php';
 class Router {
     protected $requestUri;
     protected $requestMethod;
@@ -29,6 +30,7 @@ class Router {
             header("HTTP/1.0 404 Not Found");
             echo "Page not found";
             echo $controllerName;
+            echo " ";
             echo $actionName;
             exit;
         }

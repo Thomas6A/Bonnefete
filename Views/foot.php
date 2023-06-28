@@ -1,3 +1,3 @@
-<script src="/courscrud/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/bonnefete/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
