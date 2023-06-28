@@ -34,7 +34,7 @@ class UserController
     public function postLogin(){
         $user = $_POST;
         $this->userModel->login($user);
-        header('Location: ../user/register');
+        header('Location: ../post/index');
     }
 
     public function getLogout(){
@@ -50,7 +50,7 @@ class UserController
     public function postUpdate($id_user){
         $user = $_POST;
         $this->userModel->update($id_user,$user);
-        header('Location:../../user/register');
+        header('Location:../../post/index');
     }
 
     public function getUpdatePassword($id_user){

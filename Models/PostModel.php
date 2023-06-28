@@ -54,4 +54,12 @@ class PostModel
         ]);
     }
 
+    public function getList($pseudo_user){
+        $query = $this->connection->getPdo()->prepare("SELECT id_post,content_post,date_post,pseudo_user FROM post inner join user on post.id_user = user.id_user where pseudo_user = :pseudo_user");
+        $query->execute([
+            'pseudo_user' => $pseudo_user
+        ]);
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Post");
+    }
+
 }
