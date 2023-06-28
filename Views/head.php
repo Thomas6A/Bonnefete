@@ -15,4 +15,7 @@
 <?php else: ?>
 <a href="../user/logout">Se Deconnecter</a>
 <a href="../user/update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
+<?php if($_SESSION['isModerator'] == 1) : ?>
+<a href="../user/list">Liste des Utilisateurs</a>
+<?php endif; ?>
 <?php endif; ?>

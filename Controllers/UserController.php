@@ -66,7 +66,19 @@ class UserController
 
     public function getDelete($id_user){
         $this->userModel->delete($id_user);
-        $this->getLogout();
+        if($_SESSION['id_user'] == $id_user) :
+            $this->getLogout();
+        endif;
         header('Location:../../user/register');
+    }
+
+    public function getList(){
+        $users = $this->userModel->getAll();
+        require_once 'Views/user/listeUser.php';
+    }
+
+    public function getUpdateStatut($id_user){
+        $this->userModel->updateStatut($id_user);
+        require_once 'Views/user/listeUser.php';
     }
 }

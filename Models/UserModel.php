@@ -91,4 +91,17 @@ class UserModel
             'id_user' => $id_user
         ]);
     }
+
+    public function getAll(){
+        $query = $this->connection->getPdo()->prepare("SELECT id_user,pseudo_user,mail_user FROM user where isModerator = 0");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\User");
+    }
+
+    public function updateStatut($id_user){
+        $query = $this->connection->getPdo()->prepare('update user set isModerator = 1 where id_user = :id_user');
+        $query ->execute([
+            'id_user' => $id_user
+        ]);
+    }
 }

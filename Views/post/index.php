@@ -28,6 +28,8 @@
             <?php if($_SESSION['pseudo_user'] == $post->pseudo_user) : ?>
                 <a href="./update/<?= $post->getId() ?>">Modifier le post</a>
                 <a href="./delete/<?= $post->getId() ?>">Supprimer le post</a>
+            <?php elseif($_SESSION['isModerator'] == 1): ?>
+                <a href="./delete/<?= $post->getId() ?>">Supprimer le post</a>
             <?php endif; ?>
             </td>
         </tr>
