@@ -18,11 +18,12 @@ class UserModel
     public function createUser($user){
         $password = password_hash($user['password_user'], PASSWORD_DEFAULT);
         try{
-            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user) VALUES (:mail_user, :pseudo_user, :password_user)');
+            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user, isModerator) VALUES (:mail_user, :pseudo_user, :password_user, :isModerator)');
             $query->execute([
                 'mail_user' => $user['mail_user'],
                 'pseudo_user' => $user['pseudo_user'],
-                'password_user' => $password
+                'password_user' => $password,
+                'isModerator' => 0
             ]);
             return "Bien enregistré";
         }catch (\PDOException $e){
@@ -43,7 +44,7 @@ class UserModel
         ]);
         $bdd_pass = $query->fetch(\PDO::FETCH_ASSOC);
         if(password_verify($password, $bdd_pass['password_user'])){
-            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user FROM user WHERE mail_user = :mail_user');
+            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,isModerator FROM user WHERE mail_user = :mail_user');
             $query->execute([
                 "mail_user"=>$mail
             ]);
@@ -51,7 +52,7 @@ class UserModel
             $_SESSION['id_user'] = $userCo['id_user'];
             $_SESSION['username'] = $mail;
             $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
-            
+            $_SESSION['isModerator'] = $userCo['isModerator'];
         }
     }
 
