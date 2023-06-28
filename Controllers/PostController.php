@@ -47,6 +47,9 @@ class PostController
         header('Location:../../post/index');
     }
 
-
+    public function getList($pseudo_user){
+        $posts = $this->postModel->getList($pseudo_user);
+        require_once 'Views/post/listPost.php';
+    }
     
 }
