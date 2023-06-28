@@ -44,6 +44,14 @@ class PostModel
             'id_post' => $id_post,
             'content_post' => $post['content_post']
         ]);
+
+    }
+
+    public function delete($id_post){
+        $query = $this->connection->getPdo()->prepare('DELETE FROM post WHERE id_post = :id_post');
+        $query ->execute([
+            'id_post' => $id_post
+        ]);
     }
 
 }

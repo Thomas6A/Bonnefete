@@ -42,6 +42,11 @@ class PostController
         header('Location:../../post/index');
     }
 
+    public function getDelete($id_post){
+        $this->postModel->delete($id_post);
+        header('Location:../../post/index');
+    }
+
 
     
 }

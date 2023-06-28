@@ -27,6 +27,7 @@
             <td><a href="./detail/<?= $post->getId() ?>">Voir détail</a>
             <?php if($_SESSION['pseudo_user'] == $post->pseudo_user) : ?>
                 <a href="./update/<?= $post->getId() ?>">Modifier le post</a>
+                <a href="./delete/<?= $post->getId() ?>">Supprimer le post</a>
             <?php endif; ?>
             </td>
         </tr>
