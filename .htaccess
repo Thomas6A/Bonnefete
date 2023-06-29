@@ -1,8 +1,0 @@
-RewriteEngine On
-
-# Ajoutez votre redirection ici
-RedirectMatch 301 ^/bonnefete/$ /bonnefete/post/index
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
