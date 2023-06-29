@@ -1,0 +1,17 @@
+{
+    "name": "geral/bonnefete",
+    "autoload": {
+        "psr-4": {
+            "Geral\\Bonnefete\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "geraldinebil",
+            "email": "113667275+geraldinebil@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^5.3"
+    }
+}
