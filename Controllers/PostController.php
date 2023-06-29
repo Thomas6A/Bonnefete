@@ -2,16 +2,20 @@
 
 namespace App\Controllers;
 require_once 'Models/PostModel.php';
+require_once 'Models/CommentModel.php';
 
+use App\Models\CommentModel;
 use App\Models\PostModel;
 
 class PostController
 {
     protected $postModel;
+    protected $commentModel;
 
     public function __construct()
     {
         $this->postModel = new PostModel();
+        $this->commentModel = new CommentModel();
     }
 
     public function getIndex(){
@@ -28,6 +32,8 @@ class PostController
 
     public function getDetail($id){
         $post = $this->postModel->getById($id);
+        $comments = $this->commentModel->getCommentsPost($id);
+        $com_comments = $this->commentModel->getCommentsCom($id);
         require_once 'Views/post/detail.php';
     }
 
