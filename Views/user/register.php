@@ -8,7 +8,8 @@ require_once 'Views/head.php'; ?>
     <input type="password" name="password_user" id="password_user" required>
     <label for="pseudo_user">Pseudo</label>
     <input type="text" name="pseudo_user" id="pseudo_user" required>
-    <button>S'inscrire</button>
+    <p>Vous avez deja un compte? <a href=""><span>Connectez vous !</span></a></p>
+    <button type="button" class="btn btn-success">s'inscrire</button>
 </form>
 
 <?php require_once 'Views/foot.php'; ?>

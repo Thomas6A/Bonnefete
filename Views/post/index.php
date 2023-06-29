@@ -1,6 +1,7 @@
 <?php require_once 'Views/head.php'; ?>
 
 <?php if(!empty($_SESSION) && $_SESSION['isModerator'] == 0) : ?>
+    
     <form action=<?="../post/create"?> method="post">
         <div class="form-group">
             <label for="content_post">Ecrivez votre Post</label>
