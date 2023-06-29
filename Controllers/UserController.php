@@ -39,7 +39,7 @@ class UserController
 
     public function getLogout(){
         session_destroy();
-        header('Location: ../user/register');
+        header('Location: http://localhost/bonnefete/user/register');
     }
 
     public function getUpdate($id_user){
