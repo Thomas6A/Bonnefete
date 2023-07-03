@@ -28,7 +28,7 @@ class UserModel
             ]);
             return "Bien enregistré";
         }catch (\PDOException $e){
-            return 'Une erreur est survenue';
+            return $e;
         }
 
     }

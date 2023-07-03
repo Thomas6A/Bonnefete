@@ -27,4 +27,20 @@ class CommentController
         $this->commentModel->createCom($comment,$user,$id_post,$id_precomment);
         header('Location: http://localhost/bonnefete/post/detail/'.$id_post);
     }
+
+    public function getUpdate($id){
+        $comment = $this->commentModel->getById($id);
+        require_once 'Views/comment/updateComment.php';
+    }
+
+    public function postUpdate($id_comment,$id_post){
+        $comment = $_POST;
+        $this->commentModel->update($id_comment, $comment);
+        header('Location: http://localhost/bonnefete/post/detail/'.$id_post);
+    }
+
+    public function getDelete($id_comment,$id_post){
+        $this->commentModel->delete($id_comment);
+        header('Location: http://localhost/bonnefete/post/detail/'.$id_post);
+    }
 }

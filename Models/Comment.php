@@ -8,6 +8,7 @@ class Comment
     protected string $content_comment;
     protected string $date_comment;
     protected int $id_user;
+    protected int $id_post;
     protected int $id_precomment;
 
     /**
@@ -72,6 +73,22 @@ class Comment
     public function setIdUser(int $id_user): void
     {
         $this->id_user = $id_user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdPost(): int
+    {
+        return $this->id_post;
+    }
+
+    /**
+     * @param int $id_post
+     */
+    public function setIdPost(int $id_post): void
+    {
+        $this->id_post = $id_post;
     }
 
     public function getIdPrecomment(): int

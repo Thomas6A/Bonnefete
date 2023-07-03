@@ -49,4 +49,29 @@ class CommentModel
             'id_post' => $id_post
         ]);
     }
+
+    public function getById($id){
+        $query = $this->connection->getPdo()->prepare('SELECT id_comment,content_comment,date_comment,pseudo_user,id_post FROM comment inner join user on comment.id_user = user.id_user WHERE id_comment = :id_comment');
+        $query->execute([
+            'id_comment' => $id
+        ]);
+        $query->setFetchMode(PDO::FETCH_CLASS, "App\Models\Comment");
+        return $query->fetch();
+    }
+
+    public function update($id_comment, $comment){
+        $query = $this->connection->getPdo()->prepare('update comment set content_comment = :content_comment where id_comment = :id_comment');
+        $query->execute([
+            'id_comment' => $id_comment,
+            'content_comment' => $comment['content_post']
+        ]);
+
+    }
+
+    public function delete($id_comment){
+        $query = $this->connection->getPdo()->prepare('DELETE FROM comment WHERE id_comment = :id_comment');
+        $query ->execute([
+            'id_comment' => $id_comment
+        ]);
+    }
 }
