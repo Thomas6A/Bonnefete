@@ -33,14 +33,14 @@ class CommentController
         require_once 'Views/comment/updateComment.php';
     }
 
-    public function postUpdate($id){
+    public function postUpdate($id_comment,$id_post){
         $comment = $_POST;
-        $this->commentModel->update($id, $comment);
-        header('Location: http://localhost/bonnefete/post/detail/'.$id);
+        $this->commentModel->update($id_comment, $comment);
+        header('Location: http://localhost/bonnefete/post/detail/'.$id_post);
     }
 
-    public function getDelete($id_comment){
+    public function getDelete($id_comment,$id_post){
         $this->commentModel->delete($id_comment);
-        header('Location: http://localhost/bonnefete/post/detail/'.$id_comment);
+        header('Location: http://localhost/bonnefete/post/detail/'.$id_post);
     }
 }

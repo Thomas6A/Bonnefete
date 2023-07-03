@@ -51,7 +51,7 @@ class CommentModel
     }
 
     public function getById($id){
-        $query = $this->connection->getPdo()->prepare('SELECT id_comment,content_comment,date_comment,pseudo_user FROM comment inner join user on comment.id_user = user.id_user WHERE id_comment = :id_comment');
+        $query = $this->connection->getPdo()->prepare('SELECT id_comment,content_comment,date_comment,pseudo_user,id_post FROM comment inner join user on comment.id_user = user.id_user WHERE id_comment = :id_comment');
         $query->execute([
             'id_comment' => $id
         ]);
