@@ -6,7 +6,7 @@
     <label for="password_user">Mot de Passe</label>
     <input type="password" name="password_user" id="password_user" required>
     <p id="propinscription">vous n'avez pas encore de compte ? <a href="#"><span>inscrivez-vous !</span></a></p>
-    <button type="button" class="btn btn-primary">Se connecter</button>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
 </form>
 
 <?php require_once "Views/foot.php"; ?>

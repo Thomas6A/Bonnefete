@@ -9,7 +9,7 @@ require_once 'Views/head.php'; ?>
     <label for="pseudo_user">Pseudo</label>
     <input type="text" name="pseudo_user" id="pseudo_user" required>
     <p>Vous avez deja un compte? <a href=""><span>Connectez vous !</span></a></p>
-    <button type="button" class="btn btn-success">s'inscrire</button>
+    <button type="submit" class="btn btn-success">s'inscrire</button>
 </form>
 
 <?php require_once 'Views/foot.php'; ?>
