@@ -44,7 +44,7 @@ class UserModel
         ]);
         $bdd_pass = $query->fetch(\PDO::FETCH_ASSOC);
         if(password_verify($password, $bdd_pass['password_user'])){
-            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,isModerator FROM user WHERE mail_user = :mail_user');
+            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,isModerator,isSuperAdmin FROM user WHERE mail_user = :mail_user');
             $query->execute([
                 "mail_user"=>$mail
             ]);
@@ -53,6 +53,7 @@ class UserModel
             $_SESSION['username'] = $mail;
             $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
             $_SESSION['isModerator'] = $userCo['isModerator'];
+            $_SESSION['isSuperAdmin'] = $userCo['isSuperAdmin'];
         }
     }
 
@@ -93,13 +94,20 @@ class UserModel
     }
 
     public function getAll(){
-        $query = $this->connection->getPdo()->prepare("SELECT id_user,pseudo_user,mail_user FROM user where isModerator = 0");
+        $query = $this->connection->getPdo()->prepare("SELECT id_user,pseudo_user,mail_user,isModerator,isSuperAdmin FROM user");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\User");
     }
 
     public function updateStatut($id_user){
         $query = $this->connection->getPdo()->prepare('update user set isModerator = 1 where id_user = :id_user');
+        $query ->execute([
+            'id_user' => $id_user
+        ]);
+    }
+
+    public function updateModo($id_user){
+        $query = $this->connection->getPdo()->prepare('update user set isModerator = 0 where id_user = :id_user');
         $query ->execute([
             'id_user' => $id_user
         ]);

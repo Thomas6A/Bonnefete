@@ -79,6 +79,13 @@ class UserController
 
     public function getUpdateStatut($id_user){
         $this->userModel->updateStatut($id_user);
+        $users = $this->userModel->getAll();
+        require_once 'Views/user/listeUser.php';
+    }
+
+    public function getUpdateModo($id_user){
+        $this->userModel->updateModo($id_user);
+        $users = $this->userModel->getAll();
         require_once 'Views/user/listeUser.php';
     }
 }
