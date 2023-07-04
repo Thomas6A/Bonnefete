@@ -1,25 +1,25 @@
 <?php require_once 'Views/head.php'; ?>
 <?php var_dump($likes); ?>
-<div>
-    <h1>Post de : <a href="../../post/list/<?= $post->pseudo_user ?>"> <?= $post->pseudo_user ?></a></h1>
-    <h2>Post:</h2>
+<div style="text-align: center; height:250px; width: 60%; margin: 0 auto">
+    <h1 style="text-align: center;">Post de : <a href="../../post/list/<?= $post->pseudo_user ?>"> <?= $post->pseudo_user ?></a></h1>
+    <h2 style="text-align: center;">Post:</h2>
     <p><?= $post->getContent() ?></p>
     <p><?= $post->getDate() ?></p>
     <?php if ($has_like == false) : ?>
-        <a href="../../like/likePost/<?= $post->getId() ?>">Like</a>
+        <a style="text-align: center;" href="../../like/likePost/<?= $post->getId() ?>">Like</a>
     <?php else : ?>
-        <a href="../../like/delete/<?= $post->getId() ?>">Unlike</a>
+        <a style="text-align: center;" href="../../like/delete/<?= $post->getId() ?>">Unlike</a>
     <?php endif; ?>
-    <span class="like-count">nb de like :<?= $like_post[0]->nb_like ?></span>
+    <span class="like-count"style="text-align: center"; >nb de like :<?= $like_post[0]->nb_like ?></span>
 </div>
 
-<div>
-    <h2>Commentaires :</h2>
+<div style="text-align: center; margin-bottom:5%">
+    <h2 style="text-align: center;" >Commentaires :</h2>
     <?php foreach ($comments as $comment) : ?>
         <p><?= $comment->getContent() ?></p>
         <p><?= $comment->getDate() ?></p>
         <p>de <?= $comment->pseudo_user ?></p>
-        <form action="../../comment/createCom/<?= $post->getId() ?>/<?= $comment->getId() ?>" method="post">
+        <form style="margin-top: 0;" action="../../comment/createCom/<?= $post->getId() ?>/<?= $comment->getId() ?>" method="post">
             <div class="form-group">
                 <label for="content_comment">Ecrivez votre Réponse</label>
                 <input type="textarea" name="content_comment" id="content_comment" class="form-control">
@@ -88,7 +88,7 @@
         <br>
     <?php endforeach; ?>
     <?php if (!empty($_SESSION) && $_SESSION['isModerator'] == 0 && $_SESSION['isSuperAdmin'] == 0) : ?>
-        <form action="../../comment/create/<?= $post->getId() ?>" method="post">
+        <form style="margin-top: 35px;" action="../../comment/create/<?= $post->getId() ?>" method="post">
             <div class="form-group">
                 <label for="content_comment">
                     <h3> Ecrivez votre Commentaire</h3>
