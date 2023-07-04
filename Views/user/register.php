@@ -1,7 +1,7 @@
 <?php
 require_once 'Views/head.php'; ?>
 
-<form action="../user/register" method="post">
+<form action="../user/register" method="post" style="margin-bottom: 10%;">
     <label for="mail_user">Email</label>
     <input type="email" name="mail_user" id="mail_user" required>
     <label for="password_user">Mot de passe</label>
