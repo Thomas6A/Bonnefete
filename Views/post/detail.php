@@ -5,6 +5,9 @@
     <h2>Post:</h2>
     <p><?= $post->getContent() ?></p>
     <p><?= $post->getDate() ?></p>
+    <?php if($post->image_post != null) : ?>
+                    <img src='/bonnefete/upload/<?= $post->image_post ?>'>
+    <?php endif; ?>
     <?php if ($has_like == false) : ?>
         <a href="../../like/likePost/<?= $post->getId() ?>">Like</a>
     <?php else : ?>
