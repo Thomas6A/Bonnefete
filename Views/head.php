@@ -22,7 +22,7 @@
 
 
 <nav class="navbar navbar-expand-lg bg-body-dark" style = "background-color: rgba(0, 0, 0);">
-    <img src="../Views/BONNE-removebg-preview.png" alt="" style="margin-left: 750px; width: 250px">
+    <img src="../Views/BONNE__1_-removebg-preview.png" alt="" style="margin-left: 750px; width: 250px">
     <div class="connect_box"> 
    
    <form>
