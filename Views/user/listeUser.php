@@ -8,13 +8,25 @@
         <th>Action</th>
     </tr>
     <?php foreach ($users as $user) : ?>
+        <?php if ($user->isSuperAdmin == 0) : ?>
         <tr>
             <td><?= $user->getId() ?></td>
             <td><?= $user->getPseudo() ?></td>
             <td><?= $user->getMail() ?></td>
-            <td><a href="./updateStatut/<?= $user->getId() ?>">Modifier en modérateur</a>
-                <a href="./delete/<?= $user->getId() ?>">Supprimer Profile</a></td>
+            <td><?php if ($user->isModerator == 0) : ?>
+                <a href="../updateStatut/<?= $user->getId() ?>">Modifier en modérateur</a>
+                <a href="../delete/<?= $user->getId() ?>">Supprimer Profile</a>
+                <?php endif; ?>
+                <?php if ($_SESSION['isSuperAdmin'] == 1) : ?>
+                    <?php if ($user->isModerator == 1) : ?>
+                        <a href="../updateModo/<?= $user->getId() ?>">Enlever le statut de modérateur</a>
+                        <a href="../delete/<?= $user->getId() ?>">Supprimer Profile</a>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </td>
+                
         </tr>
+        <?php endif; ?>
     <?php endforeach; ?>
 </table>
 

@@ -25,7 +25,8 @@
 <?php else: ?>
 <a class="btn btn-success" href="/bonnefete/user/logout">Se Deconnecter</a>
 <a class="btn btn-primary" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
-<?php if($_SESSION['isModerator'] == 1) : ?>
+<a class="btn btn-success" href="/bonnefete/post/index">Accueil</a>
+<?php if($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
 <a href="../user/list">Liste des Utilisateurs</a>
 <?php endif; ?>
 <?php endif; ?>

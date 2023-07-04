@@ -48,7 +48,7 @@
         <?php if ($_SESSION['pseudo_user'] == $comment->pseudo_user) : ?>
             <a href="../../comment/update/<?= $comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
             <a href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
-        <?php elseif ($_SESSION['isModerator'] == 1) : ?>
+        <?php elseif ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
             <a href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
         <?php endif; ?>
         <?php foreach ($com_comments as $com_comment) : ?>
@@ -80,14 +80,14 @@
                 <?php if ($_SESSION['pseudo_user'] == $com_comment->pseudo_user) : ?>
                     <a href="../../comment/update/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
                     <a href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
-                <?php elseif ($_SESSION['isModerator'] == 1) : ?>
+                <?php elseif ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
                     <a href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
                 <?php endif; ?>
             <?php endif; ?>
         <?php endforeach; ?>
         <br>
     <?php endforeach; ?>
-    <?php if (!empty($_SESSION) && $_SESSION['isModerator'] == 0) : ?>
+    <?php if (!empty($_SESSION) && $_SESSION['isModerator'] == 0 && $_SESSION['isSuperAdmin'] == 0) : ?>
         <form action="../../comment/create/<?= $post->getId() ?>" method="post">
             <div class="form-group">
                 <label for="content_comment">
