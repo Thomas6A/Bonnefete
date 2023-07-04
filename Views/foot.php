@@ -6,7 +6,7 @@
 
 <section>
 
-    <footer class="footer-distributed" style="background-color: black; background-size:50px">
+    <footer class="footer-distributed" style="background-color: black; background-size:50px; margin-top:150px">
     <img src="/bonnefete/Views/BONNE-removebg-preview.png" alt="" style="margin-left: 10px; width: 200px;">
       <div class="footer-right" style="position: absolute;" >
         <div class="logo" style="margin-left: 1500px; margin-top:-100px" >
