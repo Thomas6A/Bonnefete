@@ -26,14 +26,17 @@
             </div>
             <button class="btn btn-primary"><?= "Envoyer" ?></button>
         </form>
-        <?php if (count($likes) != 0) :?>
+        <?php if (count($likes) != 0) : ?>
+            <?php $hasLikedComment = false; ?>
             <?php foreach ($likes as $like) : ?>
-                <?php if ($like->getIdComment() == $comment->getId() && $like->getIdUser() == $_SESSION['id_user']) :?>
+                <?php if ($like->getIdComment() == $comment->getId() && $like->getIdUser() == $_SESSION['id_user']) : ?>
+                    <?php $hasLikedComment = true; ?>
                     <a href="../../like/deleteComment/<?= $comment->getId() ?>/<?= $post->getId() ?>">Unlike</a>
-                <?php elseif (($like->getIdComment() == $comment->getId()) and !($like->getIdUser() == $_SESSION['id_user'])) : ?>
-                    <a href="../../like/likeComment/<?= $comment->getId() ?>/<?= $post->getId() ?>">Like</a>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php if (!$hasLikedComment) : ?>
+                <a href="../../like/likeComment/<?= $comment->getId() ?>/<?= $post->getId() ?>">Like</a>
+            <?php endif; ?>
         <?php else : ?>
             <a href="../../like/likeComment/<?= $comment->getId() ?>/<?= $post->getId() ?>">Like</a>
         <?php endif; ?>
@@ -56,15 +59,18 @@
                 <p><?= $com_comment->getDate() ?></p>
                 <p>de <?= $com_comment->pseudo_user ?></p>
                 <?php if (count($likes) != 0) : ?>
+                    <?php $hasLikedComment = false; ?>
                     <?php foreach ($likes as $like) : ?>
                         <?php if ($like->getIdComment() == $com_comment->getId() && $like->getIdUser() == $_SESSION['id_user']) : ?>
+                            <?php $hasLikedComment = true; ?>
                             <a href="../../like/deleteComment/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Unlike</a>
-                        <?php else : ?>
-                            <a href="../../like/likeComment/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Like</a>
                         <?php endif; ?>
                     <?php endforeach; ?>
+                    <?php if (!$hasLikedComment) : ?>
+                        <a href="../../like/likeComment/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Like</a>
+                    <?php endif; ?>
                 <?php else : ?>
-                    <a href="../../like/likeComment/<?= $comment->getId() ?>/<?= $post->getId() ?>">Like</a>
+                    <a href="../../like/likeComment/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Like</a>
                 <?php endif; ?>
                 <?php foreach ($like_comments as $like_comment) : ?>
                     <?php if ($like_comment->id_comment == $com_comment->getId()) : ?>
