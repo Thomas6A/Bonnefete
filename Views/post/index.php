@@ -11,7 +11,7 @@
     </form>
 <?php endif; ?>
 
-<table class="table">
+<table class="table" style=" width: 70%; margin-left:20%; margin-bottom : 20% ; margin-right:10px">
     <tr>
         <th>Id</th>
         <th>Content</th>
