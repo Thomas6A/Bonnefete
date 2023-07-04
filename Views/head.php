@@ -12,7 +12,7 @@
 <body>
   
 
-<nav class="navbar navbar-expand-lg bg-body-dark" style = "background-color: rgba(0, 0, 0);">
+<nav class="navbar navbar-expand-lg bg-body-dark " style = "background-color: rgba(0, 0, 0);">
     <img src="/bonnefete/Views/BONNE__1_-removebg-preview.png" alt="" style="margin-left: 750px; width: 250px">
     <div class="connect_box"> 
 </div>
