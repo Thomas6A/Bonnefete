@@ -16,21 +16,22 @@ class PostModel
     }
 
     public function getAll(){
-        $query = $this->connection->getPdo()->prepare("SELECT id_post,content_post,date_post,pseudo_user FROM post inner join user on post.id_user = user.id_user");
+        $query = $this->connection->getPdo()->prepare("SELECT id_post,content_post,date_post,pseudo_user,image_post FROM post inner join user on post.id_user = user.id_user");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\Post");
     }
 
-    public function create($content, $user){
-        $query = $this->connection->getPdo()->prepare('INSERT INTO post (content_post,date_post,id_user) VALUES (:content_post, now(), :id_user)');
+    public function create($content, $user, $image){
+        $query = $this->connection->getPdo()->prepare('INSERT INTO post (content_post,date_post,id_user,image_post) VALUES (:content_post, now(), :id_user, :image_post)');
         $query->execute([
             'content_post' => $content['content_post'],
-            'id_user' => $user['id_user']
+            'id_user' => $user['id_user'],
+            'image_post' => $image
         ]);
     }
 
     public function getById($id){
-        $query = $this->connection->getPdo()->prepare('SELECT id_post,content_post,date_post,pseudo_user FROM post inner join user on post.id_user = user.id_user WHERE id_post = :id_post');
+        $query = $this->connection->getPdo()->prepare('SELECT id_post,content_post,date_post,pseudo_user,image_post FROM post inner join user on post.id_user = user.id_user WHERE id_post = :id_post');
         $query->execute([
             'id_post' => $id
         ]);
