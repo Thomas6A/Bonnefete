@@ -31,6 +31,10 @@ class UserController
         require_once 'Views/user/login.php';
     }
 
+    public function getrgpd(){
+        require_once 'Views/user/RGPD.php';
+    }
+
     public function postLogin(){
         $user = $_POST;
         $this->userModel->login($user);
