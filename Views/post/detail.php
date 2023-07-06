@@ -28,7 +28,7 @@
                     </label>
                     <input type="textarea" name="content_comment" id="content_comment" class="form-control">
                 </div>
-                <button class="btn btn-primary"><?= "Envoyer" ?></button>
+                <button class="btn btn-primary w-100"><?= "Envoyer" ?></button>
             </form>
         <?php endif; ?>
     </div>
@@ -65,17 +65,17 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <?php if ($_SESSION['pseudo_user'] == $comment->pseudo_user) : ?>
-                            <a href="../../comment/update/<?= $comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
-                            <a href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
+                            <a class="btn btn-success" href="../../comment/update/<?= $comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
+                            <a class="btn btn-danger" href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
                         <?php elseif ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
-                            <a href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
+                            <a class="btn btn-danger" href="../../comment/delete/<?= $comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
                         <?php endif; ?>
                         <form action="../../comment/createCom/<?= $post->getId() ?>/<?= $comment->getId() ?>" method="post" class='w-100'>
                             <div class="form-group">
                                 <label for="content_comment">Ecrivez votre Réponse</label>
                                 <input type="textarea" name="content_comment" id="content_comment" class="form-control">
                             </div>
-                            <button class="btn btn-primary"><?= "Envoyer" ?></button>
+                            <button class="btn btn-primary w-100"><?= "Envoyer" ?></button>
                         </form>
                         <?php foreach ($com_comments as $com_comment) : ?>
 
@@ -104,10 +104,10 @@
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <?php if ($_SESSION['pseudo_user'] == $com_comment->pseudo_user) : ?>
-                                    <a href="../../comment/update/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
-                                    <a href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
+                                    <a class="btn btn-success" href="../../comment/update/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Modifier le commentaire</a>
+                                    <a class="btn btn-danger" href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
                                 <?php elseif ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
-                                    <a href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
+                                    <a class="btn btn-danger" href="../../comment/delete/<?= $com_comment->getId() ?>/<?= $post->getId() ?>">Supprimer le commentaire</a>
                                 <?php endif; ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
