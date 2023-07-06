@@ -1,6 +1,9 @@
 <?php
 
+// Declare the namespace for the class
 namespace App\Controllers;
+
+// Include the required model classes
 require_once 'Models/PostModel.php';
 require_once 'Models/CommentModel.php';
 require_once 'Models/LikeModel.php';
@@ -15,6 +18,7 @@ class PostController
     protected $commentModel;
     protected $likeModel;
 
+    // Constructor method
     public function __construct()
     {
         $this->postModel = new PostModel();
@@ -22,49 +26,80 @@ class PostController
         $this->likeModel = new LikeModel();
     }
 
-    public function getIndex(){
+    // Method for getting the index page
+    public function getIndex()
+    {
         $posts = $this->postModel->getAll();
         require_once 'Views/post/index.php';
     }
 
-    public function postCreate(){
+    // Method for creating a post
+    public function postCreate()
+    {
         $post = $_POST;
         $user = $_SESSION;
-        $this->postModel->create($post,$user);
-        header('Location: ../post/index');
+        if (isset($_FILES['file'])) {
+            $tmpName = $_FILES['file']['tmp_name'];
+            $name = $_FILES['file']['name'];
+            $tabExtension = explode('.', $name);
+            $extension = strtolower(end($tabExtension));
+            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+            $uniqueName = uniqid('', true);
+            $file = $uniqueName . "." . $extension;
+            if (in_array($extension, $extensions)) {
+                move_uploaded_file($tmpName, './upload/' . $file);
+                $this->postModel->create($post, $user, $file);
+                header('Location: ../post/index');
+            } else {
+                echo "Mauvaise extension";
+            };
+        } else {
+            $file = null;
+            $this->postModel->create($post, $user, $file);
+            header('Location: ../post/index');
+        }
     }
 
-    public function getDetail($id){
+    // Method for getting the detail page of a post
+    public function getDetail($id)
+    {
         $post = $this->postModel->getById($id);
         $comments = $this->commentModel->getCommentsPost($id);
         $com_comments = $this->commentModel->getCommentsCom($id);
         $like_post = $this->likeModel->nbLikePost($id);
         $like_comments = $this->likeModel->nbLikeComment($id);
         $user = $_SESSION;
-        $has_like = $this->likeModel->hasLike($user['id_user'],$id);
+        $has_like = $this->likeModel->hasLike($user['id_user'], $id);
         $likes = $this->likeModel->allLike();
         require_once 'Views/post/detail.php';
     }
 
-    public function getUpdate($id){
+     // Method for getting the update page of a post
+    public function getUpdate($id)
+    {
         $post = $this->postModel->getById($id);
         require_once 'Views/post/updatePost.php';
     }
 
-    public function postUpdate($id){
+    // Method for updating a post
+    public function postUpdate($id)
+    {
         $post = $_POST;
         $this->postModel->update($id, $post);
         header('Location:../../post/index');
     }
 
-    public function getDelete($id_post){
+    // Method for deleting a post
+    public function getDelete($id_post)
+    {
         $this->postModel->delete($id_post);
         header('Location:../../post/index');
     }
 
-    public function getList($pseudo_user){
+    // Method for getting the list of posts for a user
+    public function getList($pseudo_user)
+    {
         $posts = $this->postModel->getList($pseudo_user);
         require_once 'Views/post/listPost.php';
     }
-    
 }

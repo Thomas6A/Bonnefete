@@ -1,11 +1,13 @@
 <?php require_once 'Views/head.php'; ?>
 
-<?php if(!empty($_SESSION) && $_SESSION['isModerator'] == 0) : ?>
+<?php if(!empty($_SESSION) && $_SESSION['isModerator'] == 0 && $_SESSION['isSuperAdmin'] == 0) : ?>
     
-    <form action=<?="../post/create"?> method="post">
+    <form action=<?="../post/create"?> method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="content_post">Ecrivez votre Post</label>
             <input type="textarea" name="content_post" id="content_post" class="form-control">
+            <label for="file">Fichier</label>
+            <input type="file" name="file">
         </div>
         <button class="btn btn-primary"><?="Envoyer"?></button>
     </form>
@@ -17,6 +19,7 @@
         <th>Content</th>
         <th>Date</th>
         <th>User</th>
+        <th>Image</th>
         <th>Action</th>
     </tr>
     <?php foreach ($posts as $post) : ?>
@@ -25,11 +28,16 @@
             <td><?= $post->getContent() ?></td>
             <td><?= $post->getDate() ?></td>
             <td><?= $post->pseudo_user ?></td>
+            <td>
+                <?php if($post->image_post != null) : ?>
+                    <img src='/bonnefete/upload/<?= $post->image_post ?>' width='300px' >
+                <?php endif; ?>
+            </td>
             <td><a href="./detail/<?= $post->getId() ?>">Voir détail</a>
             <?php if($_SESSION['pseudo_user'] == $post->pseudo_user) : ?>
                 <a href="./update/<?= $post->getId() ?>">Modifier le post</a>
                 <a href="./delete/<?= $post->getId() ?>">Supprimer le post</a>
-            <?php elseif($_SESSION['isModerator'] == 1): ?>
+            <?php elseif($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1): ?>
                 <a href="./delete/<?= $post->getId() ?>">Supprimer le post</a>
             <?php endif; ?>
             </td>

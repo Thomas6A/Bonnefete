@@ -30,7 +30,7 @@
           </div>
         </div>
     </nav>
-    
+ 
     <div class="container-fluid h-100 position-absolute">
         <div class="row h-100">
             <nav class="col-1 bg-black h-100">
@@ -45,4 +45,5 @@
                 </div>
             </nav>
         </div>
+
     </div>
