@@ -43,9 +43,9 @@
     </div>
   </nav>
 
-  <div class="container-fluid h-100 position-absolute" style='z-index: -1;'>
+  <div class="container-fluid h-100 position-absolute w-25">
     <div class="row h-100">
-      <nav class="col-1 bg-black h-100">
+      <nav class="col-6 bg-black h-100">
         <div class="d-flex flex-column align-items-center h-100">
           <div class="nav flex-column mt-3">
             <a class="nav-link text-white" href="#">Accueil</a>
