@@ -1,6 +1,6 @@
-<div class="container my-5 position-sticky" >
+<div class="container mx-0 p-0 position-sticky" >
 
-  <footer class="bg-black text-end text-white ">
+  <footer class="bg-black text-end text-white mx-0" style="width: 120%;">
   <!-- Grid container -->
   
   <div class="container p-4 pb-0" >
