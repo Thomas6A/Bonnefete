@@ -17,10 +17,10 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <?php if (!empty($_SESSION)) : ?>
             <li class="nav-item ">
-              <a class="nav-link active text-light" href="#">Accueil</a>
+              <a class="nav-link active text-light" href="/bonnefete/post/index">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-light" href="#">les derniers Posts</a>
+              <a class="nav-link active text-light" href="/bonnefete/post/index">les derniers Posts</a>
             </li>
           <?php endif; ?>
         </ul>
@@ -43,19 +43,20 @@
     </div>
   </nav>
 
-  <div class="container-fluid h-100 position-absolute w-25">
-    <div class="row h-100">
-      <nav class="col-6 bg-black h-100">
-        <div class="d-flex flex-column align-items-center h-100">
-          <div class="nav flex-column mt-3">
-            <a class="nav-link text-white" href="#">Accueil</a>
-            <a class="nav-link text-white" href="#">Mes Posts</a>
-            <a class="nav-link text-white" href="#">Modifier mon profil</a>
-            <button class="btn btn-outline-danger mt-5">Déconnexion</button>
+  <?php if (!empty($_SESSION)) : ?>
+    <div class="container-fluid h-100 position-absolute w-25">
+      <div class="row h-100">
+        <nav class="col-6 bg-black h-100">
+          <div class="d-flex flex-column align-items-center h-100">
+            <div class="nav flex-column mt-3">
+              <a class="nav-link text-white" href="/bonnefete/post/index">Accueil</a>
+              <a class="nav-link text-white" href="/bonnefete/post/list/<?= $_SESSION['pseudo_user'] ?>">Mes Posts</a>
+              <a class="nav-link text-white" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier mon profil</a>
+              <button class="btn btn-outline-danger mt-5">Déconnexion</button>
+            </div>
+
           </div>
-
-        </div>
-      </nav>
-    </div>
-
+        </nav>
+      </div>
+    <?php endif; ?>
   </div>
