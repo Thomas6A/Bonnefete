@@ -28,13 +28,14 @@ class UserModel
     {
         $password = password_hash($user['password_user'], PASSWORD_DEFAULT);
         try {
-            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user, isModerator, isSuperAdmin) VALUES (:mail_user, :pseudo_user, :password_user, :isModerator, :isSuperAdmin)');
+            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user, isModerator, isSuperAdmin, confirm) VALUES (:mail_user, :pseudo_user, :password_user, :isModerator, :isSuperAdmin, :confirm)');
             $query->execute([
                 'mail_user' => $user['mail_user'],
                 'pseudo_user' => $user['pseudo_user'],
                 'password_user' => $password,
                 'isModerator' => 0,
-                'isSuperAdmin' => 0
+                'isSuperAdmin' => 0,
+                'confirm' => 0
             ]);
             return "Bien enregistré";
         } catch (\PDOException $e) {
@@ -169,6 +170,13 @@ class UserModel
         $query = $this->connection->getPdo()->prepare('update user set isModerator = 0 where id_user = :id_user');
         $query->execute([
             'id_user' => $id_user
+        ]);
+    }
+
+    public function confirm($pseudo_user){
+        $query = $this->connection->getPdo()->prepare('update user set confirm = 1 where pseudo_user = :pseudo_user');
+        $query->execute([
+            'pseudo_user' => $pseudo_user
         ]);
     }
 }

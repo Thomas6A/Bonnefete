@@ -6,9 +6,12 @@ namespace App\Controllers;
 // Include the required model class
 require_once 'Models/UserModel.php';
 require_once 'Models/LogsModel.php';
+require "vendor/autoload.php";
 
 use App\Models\UserModel;
 use App\Models\LogsModel;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class UserController
 {
@@ -33,9 +36,8 @@ class UserController
     {
         $user = $_POST;
         $message = $this->userModel->createUser($user);
-        $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a été créé");
-        echo $message;
-        echo '<a href="../user/login">Se connecter</a>';
+        $this->sendEmail($user);
+        $this->logsModel->create("L'utilisateur " . $user['pseudo_user'] . " a été créé");
     }
 
     // Method for getting the login page
@@ -58,11 +60,16 @@ class UserController
         if ($_SESSION == null) {
             header('Location: ../user/login');
         } else {
-            $this->logsModel->create("L'utilisateur ".$_SESSION['pseudo_user']." s'est connectée");
+            $this->logsModel->create("L'utilisateur " . $_SESSION['pseudo_user'] . " s'est connectée");
             header('Location: ../post/index');
         }
     }
 
+    public function getConfirm($id_user){
+        $this->userModel->confirm($id_user);
+        echo 'Compte confirmé';
+        echo '<a href="../../user/login">Se connecter</a>';
+    }
     // Method for handling user logout
     public function getLogout()
     {
@@ -82,7 +89,7 @@ class UserController
     {
         $user = $_POST;
         $this->userModel->update($id_user, $user);
-        $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a été modifié");
+        $this->logsModel->create("L'utilisateur " . $user['pseudo_user'] . " a été modifié");
         header('Location:../../post/index');
     }
 
@@ -107,10 +114,10 @@ class UserController
         $this->userModel->delete($id_user);
         if ($_SESSION['id_user'] == $id_user) {
             $this->getLogout();
-            $this->logsModel->create("L'utilisateur ".$id_user." a été supprimé");
+            $this->logsModel->create("L'utilisateur " . $id_user . " a été supprimé");
             header('Location:../../user/register');
         } else {
-            $this->logsModel->create("L'utilisateur ".$id_user." a été supprimé");
+            $this->logsModel->create("L'utilisateur " . $id_user . " a été supprimé");
             header('Location:../../user/list');
         }
     }
@@ -136,5 +143,37 @@ class UserController
         $this->userModel->updateModo($id_user);
         $users = $this->userModel->getAll();
         header('Location:../../user/list');
+    }
+
+    public function sendEmail($user)
+    {
+
+        $mail = new PHPMailer(true);
+
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+        $mail->isSMTP();
+        $mail->SMTPAuth = true;
+
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->Username = "shadics2000@gmail.com";
+        $mail->Password = "ibtcvwshkubmoleu";
+
+        $mail->setFrom("shadics2000@gmail.com");
+        $mail->addAddress($user['mail_user']);
+
+        $confirmationLink = "http://localhost/bonnefete/user/confirm/" . $user['pseudo_user'];
+
+        $mail->Subject = "Confirmation";
+        $mail->isHTML(true);
+        $mail->Body = "Veuillez confirmer votre adresse : <a href='" . $confirmationLink . "'>ici</a>";
+
+        $mail->send();
+
+        echo 'Message de confirmation envoyé';
+        echo '<a href="../user/login">Se connecter</a>';
     }
 }
