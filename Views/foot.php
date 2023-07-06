@@ -1,4 +1,4 @@
-<div class="container my-5 " >
+<div class="container my-5 position-sticky" >
 
   <footer class="bg-black text-end text-white ">
   <!-- Grid container -->
