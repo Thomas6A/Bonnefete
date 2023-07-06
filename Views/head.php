@@ -35,7 +35,7 @@
             <a class="btn btn-success" href="/bonnefete/user/logout">Se Deconnecter</a>
             <a class="btn btn-primary" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
             <?php if ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
-              <a href="../user/list">Liste des Utilisateurs</a>
+              <a class="btn btn-success" href="../user/list">Liste des Utilisateurs</a>
             <?php endif; ?>
           <?php endif; ?>
         </form>
@@ -52,7 +52,7 @@
               <a class="nav-link text-white" href="/bonnefete/post/index">Accueil</a>
               <a class="nav-link text-white" href="/bonnefete/post/list/<?= $_SESSION['pseudo_user'] ?>">Mes Posts</a>
               <a class="nav-link text-white" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier mon profil</a>
-              <button class="btn btn-outline-danger mt-5">Déconnexion</button>
+              <a class="btn btn-outline-danger mt-5" href="/bonnefete/user/logout">Déconnexion</a>
             </div>
 
           </div>
