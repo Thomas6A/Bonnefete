@@ -36,7 +36,7 @@
   </nav>
 
   <?php if (!empty($_SESSION)) : ?>
-    <div class="container-fluid h-100 position-fixed w-25" style='top: 0;'>
+    <div class="container-fluid h-100 position-fixed w-25 z-1" style='top: 0;'>
       <div class="row h-100">
         <nav class="col-6 bg-black h-100">
           <div class="d-flex flex-column align-items-center h-100">

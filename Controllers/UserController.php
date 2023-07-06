@@ -127,7 +127,7 @@ class UserController
     {
         $this->userModel->updateStatut($id_user);
         $users = $this->userModel->getAll();
-        require_once 'Views/user/listeUser.php';
+        header('Location:../../user/list');
     }
 
     // Method for updating the user role to moderator
@@ -135,6 +135,6 @@ class UserController
     {
         $this->userModel->updateModo($id_user);
         $users = $this->userModel->getAll();
-        require_once 'Views/user/listeUser.php';
+        header('Location:../../user/list');
     }
 }
