@@ -1,4 +1,5 @@
-<script src="/bonnefete/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="/bonnefete/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
@@ -6,10 +7,10 @@
 
 <section>
 
-    <footer class="footer-distributed h-25" style="background-color: black; background-size:50px; ">
+    <footer class="footer-distributed w-100 position-absolute" style="background-color: black;   ">
     <img src="/bonnefete/Views/BONNE-removebg-preview.png" alt="" style="margin-left: 15%; width: 12%;">
       <div class="footer-right" style="position: absolute;" >
-        <div class="logo" style="margin-left: 1500px; margin-top:-100px" >
+        <div class="logo" style="margin-left: 93rem; margin-top:-100px" >
         <a href="https://www.facebook.com/?stype=lo&jlou=AfeGcmb43eNnrlPXNY6mvArGFNNAdDr0Rhg46ZSUNtDuzcOq0cNZBO5ByNS-gq-FwlbYWFDK09zvraDYhPYn96DFctervtnXplJZPtxjirjZYA&smuh=8374&lh=Ac-xa0jdB37qq-1582g"><i class="fa fa-facebook"><img src="/bonnefete/Views/Facebook_logo_(square).png" alt="" style="width: 5%;" ></a>
         <a href="https://twitter.com/i/flow/login?redirect_after_login=%2F%3Flang%3Dfr"><i class="fa fa-twitter"><img src="/bonnefete/Views/Logo_of_Twitter.svg-removebg-preview.png" alt="" style="width: 5%;" ></a>
         <a href="https://www.linkedin.com/authwall?trk=qf&original_referer=https://www.linkedin.com/feed/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fhome"><i class="fa fa-linkedin"><img src="/bonnefete/Views/LinkedIn_logo_initials.png" alt="" style="width: 5%;" ></a>
@@ -22,5 +23,5 @@
 
         <p style="color: white; text-align:center" >&copy; Copyright 2023</p>
       </div>
-</section>
-    </footer>
+
+</footer>
