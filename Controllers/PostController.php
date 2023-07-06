@@ -7,16 +7,19 @@ namespace App\Controllers;
 require_once 'Models/PostModel.php';
 require_once 'Models/CommentModel.php';
 require_once 'Models/LikeModel.php';
+require_once 'Models/LogsModel.php';
 
 use App\Models\CommentModel;
 use App\Models\PostModel;
 use App\Models\LikeModel;
+use App\Models\LogsModel;
 
 class PostController
 {
     protected $postModel;
     protected $commentModel;
     protected $likeModel;
+    protected $logsModel;
 
     // Constructor method
     public function __construct()
@@ -24,6 +27,7 @@ class PostController
         $this->postModel = new PostModel();
         $this->commentModel = new CommentModel();
         $this->likeModel = new LikeModel();
+        $this->logsModel = new LogsModel();
     }
 
     // Method for getting the index page
@@ -49,6 +53,7 @@ class PostController
             if (in_array($extension, $extensions)) {
                 move_uploaded_file($tmpName, './upload/' . $file);
                 $this->postModel->create($post, $user, $file);
+                $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a écris un post");
                 header('Location: ../post/index');
             } else {
                 echo "Mauvaise extension";
@@ -56,6 +61,7 @@ class PostController
         } else {
             $file = null;
             $this->postModel->create($post, $user, $file);
+            $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a écris un post");
             header('Location: ../post/index');
         }
     }
@@ -86,6 +92,7 @@ class PostController
     {
         $post = $_POST;
         $this->postModel->update($id, $post);
+        $this->logsModel->create("Le post ".$id." a été modifié");
         header('Location:../../post/index');
     }
 
@@ -93,6 +100,7 @@ class PostController
     public function getDelete($id_post)
     {
         $this->postModel->delete($id_post);
+        $this->logsModel->create("Le post ".$id_post." a été supprimé");
         header('Location:../../post/index');
     }
 

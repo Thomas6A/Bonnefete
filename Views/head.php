@@ -26,6 +26,9 @@
             <?php if ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
               <a class="btn btn-success" href="../user/list">Liste des Utilisateurs</a>
             <?php endif; ?>
+            <?php if ($_SESSION['isSuperAdmin'] == 1) : ?>
+              <a class="btn btn-primary" href="../logs/index">Liste des Logs</a>
+            <?php endif; ?>
           <?php endif; ?>
         </form>
       </div>

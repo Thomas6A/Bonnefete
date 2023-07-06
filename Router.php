@@ -6,6 +6,7 @@ require_once 'Controllers/UserController.php';
 require_once 'Controllers/PostController.php';
 require_once 'Controllers/CommentController.php';
 require_once 'Controllers/LikeController.php';
+require_once 'Controllers/LogsController.php';
 class Router {
     protected $requestUri;
     protected $requestMethod;
