@@ -5,17 +5,21 @@ namespace App\Controllers;
 
 // Include the required model class
 require_once 'Models/UserModel.php';
+require_once 'Models/LogsModel.php';
 
 use App\Models\UserModel;
+use App\Models\LogsModel;
 
 class UserController
 {
     protected $userModel;
+    protected $logsModel;
 
     // Constructor method
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->logsModel = new LogsModel();
     }
 
     // Method for getting the register page
@@ -29,6 +33,7 @@ class UserController
     {
         $user = $_POST;
         $message = $this->userModel->createUser($user);
+        $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a été créé");
         echo $message;
         echo '<a href="../user/login">Se connecter</a>';
     }
@@ -53,6 +58,7 @@ class UserController
         if ($_SESSION == null) {
             header('Location: ../user/login');
         } else {
+            $this->logsModel->create("L'utilisateur ".$_SESSION['pseudo_user']." s'est connectée");
             header('Location: ../post/index');
         }
     }
@@ -76,6 +82,7 @@ class UserController
     {
         $user = $_POST;
         $this->userModel->update($id_user, $user);
+        $this->logsModel->create("L'utilisateur ".$user['pseudo_user']." a été modifié");
         header('Location:../../post/index');
     }
 
@@ -100,8 +107,10 @@ class UserController
         $this->userModel->delete($id_user);
         if ($_SESSION['id_user'] == $id_user) {
             $this->getLogout();
+            $this->logsModel->create("L'utilisateur ".$id_user." a été supprimé");
             header('Location:../../user/register');
         } else {
+            $this->logsModel->create("L'utilisateur ".$id_user." a été supprimé");
             header('Location:../../user/list');
         }
     }
