@@ -98,10 +98,12 @@ class UserController
     public function getDelete($id_user)
     {
         $this->userModel->delete($id_user);
-        if ($_SESSION['id_user'] == $id_user) :
+        if ($_SESSION['id_user'] == $id_user) {
             $this->getLogout();
-        endif;
-        header('Location:../../user/register');
+            header('Location:../../user/register');
+        } else {
+            header('Location:../../user/list');
+        }
     }
 
     // Method for getting the list of users
@@ -116,7 +118,7 @@ class UserController
     {
         $this->userModel->updateStatut($id_user);
         $users = $this->userModel->getAll();
-        require_once 'Views/user/listeUser.php';
+        header('Location:../../user/list');
     }
 
     // Method for updating the user role to moderator
@@ -124,6 +126,6 @@ class UserController
     {
         $this->userModel->updateModo($id_user);
         $users = $this->userModel->getAll();
-        require_once 'Views/user/listeUser.php';
+        header('Location:../../user/list');
     }
 }

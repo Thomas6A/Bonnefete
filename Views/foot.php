@@ -1,4 +1,4 @@
-<div class='row'>
+<div class='row z-0'>
   <div class="container mx-0 p-0 position-sticky row col-12">
 
     <footer class="bg-black text-end text-white mx-0 col-12">
