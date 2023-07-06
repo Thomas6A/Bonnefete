@@ -31,24 +31,6 @@
         </div>
     </nav>
     
-<<<<<<< Updated upstream
-<?php else: ?>
-<a class="btn btn-success" href="/bonnefete/user/logout">Se Deconnecter</a>
-<a class="btn btn-primary" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
-<?php if($_SESSION['isModerator'] == 1) : ?>
-<a href="../user/list">Liste des Utilisateurs</a>
-
-<?php endif; ?>
-<?php endif; ?>
-  </div>
-</nav>
-<div class="sidebar position-absolute h-100 d-flex flex-column p-5 bg-black" style="width: 16%;" >
-        
-        <a class="accueil mt-5 text-decoration-none text-white" href="/bonnefete/">Accueil</a>
-        <a class="mon-profil mt-5 text-decoration-none text-white " href="/bonnefete/user/update">Mon Profil</a>
-        <a class="btn btn-danger mt-5 w-75 rounded-4" href="/bonnefete/user/logout">Se Déconnecter</a>
-       
-=======
     <div class="container-fluid h-100 position-absolute">
         <div class="row h-100">
             <nav class="col-1 bg-black h-100">
@@ -63,5 +45,4 @@
                 </div>
             </nav>
         </div>
->>>>>>> Stashed changes
     </div>
