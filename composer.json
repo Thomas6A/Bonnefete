@@ -1,0 +1,19 @@
+{
+    "name": "vendor/bonnefete",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Bonnefete\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas6A",
+            "email": "thomas.baudrin@outlook.fr"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^5.3",
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.8"
+    }
+}
