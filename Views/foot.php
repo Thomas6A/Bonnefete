@@ -7,7 +7,7 @@
     <section class="mb-4" style="background-color: black;">
       <!-- Vos liens de médias sociaux ici -->
     </section>
-    <div class="text-center py-0s>
+    <div class="text-center py-0s">
       <p class="m-0">© 2023 Tous droits réservés</p>
     </div>
   </div>

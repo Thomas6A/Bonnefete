@@ -11,7 +11,7 @@
         <label for="password_user">Mot de Passe</label>
         <input type="password" name="password_user" id="password_user" class="form-control mb-3" required>
 
-        <p id="propinscription" class="mb-3">Vous n'avez pas encore de compte ? <a href="#"><span>Inscrivez-vous !</span></a></p>
+        <p id="propinscription" class="mb-3">Vous n'avez pas encore de compte ? <a href="../user/login"><span>Inscrivez-vous !</span></a></p>
 
         <button type="submit" class="btn btn-primary">Se connecter</button>
       </form>
