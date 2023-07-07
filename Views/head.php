@@ -8,7 +8,7 @@
 </head>
 
 <body class='w-100' style='overflow-x: hidden;'>
-  <nav class="navbar navbar-expand-lg bg-black">
+  <nav class="navbar navbar-expand-lg bg-black w-100">
     <div class="container-fluid">
       <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,6 +23,7 @@
           <?php else : ?>
             <a class="btn btn-success" href="/bonnefete/user/logout">Se Deconnecter</a>
             <a class="btn btn-primary" href="/bonnefete/user/update/<?= $_SESSION['id_user'] ?>">Modifier Profile</a>
+            <a class="btn btn-primary d-block d-lg-none" href="/bonnefete/post/index">Accueil</a>
             <?php if ($_SESSION['isModerator'] == 1 or $_SESSION['isSuperAdmin'] == 1) : ?>
               <a class="btn btn-success" href="../user/list">Liste des Utilisateurs</a>
             <?php endif; ?>
