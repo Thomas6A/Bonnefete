@@ -42,7 +42,7 @@ class PostController
     {
         $post = $_POST;
         $user = $_SESSION;
-        if (isset($_FILES['file'])) {
+        if (isset($_FILES['file']) && $_FILES['file']['error'] != 4) {
             $tmpName = $_FILES['file']['tmp_name'];
             $name = $_FILES['file']['name'];
             $tabExtension = explode('.', $name);

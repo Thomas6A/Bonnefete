@@ -15,12 +15,10 @@
                 </div>
                 <div class="text-center mt-3">
                     <button class="btn btn-primary">Mettre à jour</button>
-                    <button class="btn btn-success">
-                        Modifier Mot de passe<a href="../updatePassword/<?= $id_user ?>" class="mx-3"></a>
-                    </button>
+                    <a href="../updatePassword/<?= $id_user ?>" class="btn btn-success">Modifier Mot de passe</a>
                 </div>
                 <div class="text-center mt-5">
-                    <button class="btn btn-danger">Supprimer profil <a href="../delete/<?= $id_user ?>"></a></button>
+                    <a href="../delete/<?= $id_user ?>" class="btn btn-danger">Supprimer profil</a>
                 </div>
             </form>
         </div>
