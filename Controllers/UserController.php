@@ -56,13 +56,9 @@ class UserController
     public function postLogin()
     {
         $user = $_POST;
-        $this->userModel->login($user);
-        if ($_SESSION == null) {
-            header('Location: ../user/login');
-        } else {
-            $this->logsModel->create("L'utilisateur " . $_SESSION['pseudo_user'] . " s'est connectée");
-            header('Location: ../post/index');
-        }
+        $message = $this->userModel->login($user);
+        $this->logsModel->create("L'utilisateur " . $_SESSION['pseudo_user'] . " s'est connectée");
+        echo $message;
     }
 
     public function getConfirm($id_user){
