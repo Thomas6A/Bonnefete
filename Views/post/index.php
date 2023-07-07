@@ -1,7 +1,7 @@
 <?php require_once 'Views/head.php'; ?>
 
 <div class='row'>
-    <div class='col-3 col-lg-2'></div>
+    <div class='col-3 col-lg-4'></div>
     <div class='col-6 col-lg-4 card bg-light p-2'>
         <?php if (!empty($_SESSION) && $_SESSION['isModerator'] == 0 && $_SESSION['isSuperAdmin'] == 0) : ?>
 
