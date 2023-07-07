@@ -1,8 +1,8 @@
 <?php require_once 'Views/head.php'; ?>
 
 <div class='row'>
-    <div class='col-4'></div>
-    <div class='col-4 card bg-light p-2'>
+    <div class='col-3 col-lg-2'></div>
+    <div class='col-6 col-lg-4 card bg-light p-2'>
         <?php if (!empty($_SESSION) && $_SESSION['isModerator'] == 0 && $_SESSION['isSuperAdmin'] == 0) : ?>
 
             <form action=<?= "../post/create" ?> method="post" enctype="multipart/form-data">
@@ -10,7 +10,7 @@
                     <label for="content_post">Ecrivez votre Post</label>
                     <input type="textarea" name="content_post" id="content_post" class="form-control">
                     <label for="file">Fichier</label>
-                    <input type="file" name="file">
+                    <input type="file" class="form-control" name="file">
                 </div>
                 <button class="btn btn-primary w-100"><?= "Envoyer" ?></button>
             </form>
