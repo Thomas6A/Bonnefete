@@ -28,13 +28,14 @@ class UserModel
     {
         $password = password_hash($user['password_user'], PASSWORD_DEFAULT);
         try {
-            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user, isModerator, isSuperAdmin) VALUES (:mail_user, :pseudo_user, :password_user, :isModerator, :isSuperAdmin)');
+            $query = $this->connection->getPdo()->prepare('INSERT INTO user (mail_user, pseudo_user, password_user, isModerator, isSuperAdmin, confirm) VALUES (:mail_user, :pseudo_user, :password_user, :isModerator, :isSuperAdmin, :confirm)');
             $query->execute([
                 'mail_user' => $user['mail_user'],
                 'pseudo_user' => $user['pseudo_user'],
                 'password_user' => $password,
                 'isModerator' => 0,
-                'isSuperAdmin' => 0
+                'isSuperAdmin' => 0,
+                'confirm' => 0
             ]);
             return "Bien enregistré";
         } catch (\PDOException $e) {
@@ -58,16 +59,21 @@ class UserModel
         ]);
         $bdd_pass = $query->fetch(\PDO::FETCH_ASSOC);
         if (password_verify($password, $bdd_pass['password_user'])) {
-            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,isModerator,isSuperAdmin FROM user WHERE mail_user = :mail_user');
+            $query = $this->connection->getPdo()->prepare('SELECT id_user,pseudo_user,isModerator,isSuperAdmin,confirm FROM user WHERE mail_user = :mail_user');
             $query->execute([
                 "mail_user" => $mail
             ]);
             $userCo = $query->fetch(\PDO::FETCH_ASSOC);
-            $_SESSION['id_user'] = $userCo['id_user'];
-            $_SESSION['username'] = $mail;
-            $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
-            $_SESSION['isModerator'] = $userCo['isModerator'];
-            $_SESSION['isSuperAdmin'] = $userCo['isSuperAdmin'];
+            if ($userCo['confirm'] == 0) {
+                return 'Veuillez confirmez votre adresse <a href="../user/login">Se connecter</a>';
+            } else {
+                $_SESSION['id_user'] = $userCo['id_user'];
+                $_SESSION['username'] = $mail;
+                $_SESSION['pseudo_user'] = $userCo['pseudo_user'];
+                $_SESSION['isModerator'] = $userCo['isModerator'];
+                $_SESSION['isSuperAdmin'] = $userCo['isSuperAdmin'];
+                return 'Bien connecté <a href="../post/index">Accueil</a>';
+            }
         }
     }
 
@@ -169,6 +175,14 @@ class UserModel
         $query = $this->connection->getPdo()->prepare('update user set isModerator = 0 where id_user = :id_user');
         $query->execute([
             'id_user' => $id_user
+        ]);
+    }
+
+    public function confirm($pseudo_user)
+    {
+        $query = $this->connection->getPdo()->prepare('update user set confirm = 1 where pseudo_user = :pseudo_user');
+        $query->execute([
+            'pseudo_user' => $pseudo_user
         ]);
     }
 }
